@@ -470,7 +470,9 @@ function slotNumToIDs(slot) {
 }
 
 function setSpeakerData(speakerID) {
+  console.log(speakerID)
   valsToFind = slotNumToIDs(idToSlotNum(speakerID))
+  console.log(valsToFind)
   neighbouringSpeakers = [];
   for(i in valsToFind) {
     index = findInFirstCol(speakerData, i)
