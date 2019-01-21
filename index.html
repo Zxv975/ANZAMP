@@ -353,7 +353,7 @@ function arrFirstToInt(arr) {
 window.onload = $.get(speakerDataFileLocation, function(data) {
 	data = data.split("\n")
 	dataHeaders = data[0].split(",")
-	speakerDataList = data.slice(1).map(x => arrFirstToInt(x.split(",")))
+	speakerData = data.slice(1).map(x => arrFirstToInt(x.split(",")))
 });
 
 // Get the <span> element that closes the modal
