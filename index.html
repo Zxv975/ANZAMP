@@ -341,9 +341,9 @@ function toggle(obj) {
   else obj.style.display = "block";
 }
 
-window.onload = $.get(window.location.pathname.slice(0, -11)+'/2019/speaker_data/data.csv', function(data) {
+window.onload = $.get(window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.csv', function(data) {
   if (data == "ON") {
-
+    console.log(data)
   } else {
 
   }
