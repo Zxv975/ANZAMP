@@ -389,9 +389,12 @@ function arrFirstToInt(arr) {
 	return [str].concat(arr.slice(1))
 }
 
-window.onload = $.get(speakerDataFileLocation, function(data) {
-  speakerData = tsvToData(data)
-});
+window.onload = function() {
+  $.get(speakerDataFileLocation, function(data) {
+    speakerData = tsvToData(data)
+  });
+  init();
+}
 
 function csvToData(csv) {
   data = csv.split("\n")
@@ -466,7 +469,6 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
   bod = document.getElementById("modal-tbody")
   bod.innerHTML = ""
   rows = [];
-  console.log(selectedSpeakerData)
   for(i = 0; i < numRows; i++) {
     rows.push(bod.insertRow())
     cells = addVal([], last(rows).insertCell(-1));
@@ -478,7 +480,6 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
       speakerIndex = i * numCols + j;
       if(selectedSpeakerData[speakerIndex][3] == "") selectedSpeakerData[speakerIndex][3] = "No title"
       if(selectedSpeakerData[speakerIndex][4] == "") selectedSpeakerData[speakerIndex][4] = "No abstract"
-      console.log(i, j, numCols, index)
       cells[j+1].innerHTML =
         '<div><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div>'
     }
@@ -512,7 +513,6 @@ function init() {
     studentElements[i].id = 'student-' + index
     studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + index + "</a>"
     speakerIndex = findInFirstCol(speakerData, index);
-    console.log(speakerIndex)
     if(speakerIndex != -1) studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>"+speakerData[speakerIndex][2]+"</a>"
     studentElements[i].onclick = function() {
       setSpeakerData(this.id.slice(8)) // Take only the index and use that as a unique function parameter
