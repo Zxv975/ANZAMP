@@ -426,19 +426,69 @@ window.onload = $.get(speakerDataFileLocation, function(data) {
 	data = data.split("\n")
 	dataHeaders = data[0].split(",")
 	speakerData = data.slice(1).map(x => arrFirstToInt(x.split(",")))
+  speakerData = speakerData.sort(firstColumnSort)
 });
 
-function setSpeakerData(speakerID) {
+function firstColumnSort(a, b) {
+  if(a[0] === b[0]) return 0
+  else if(a[0] == "") return 1 // Case when a[0] = "" and b[0] != "". Consider "" to be larger than any number, so b[0] is smaller
+  else if(b[0] == "") return -1 // Opposite case of above, so a[0] is smaller.
+  else return (a[0] < b[0]) ? -1 : 1
+}
 
+function findInCol(arr, val, col) {
+  if(col >= arr.length || col < 0) return -1 // Outside of bounds
+  for(var i = 0; i < arr.length; i++)
+    if(arr[i][col] == val)
+        return i;
+  return -1; // Value not found.
+}
+
+function findInFirstCol(arr, val) { return findInCol(arr, val, 0) }
+
+function idToSlotNum(id) {
+  if(1 <= id && id <= 8) return Math.ceil(id/4)
+  if(id == 9 || id == 10) return 3
+  if(11 <= id && id <= 22) return Math.ceil((id+2)/4)
+  if(id == 23 || id == 24) return 7
+  if(25 <= id && id <= 28) return Math.ceil((id+4)/4)
+  if(id >= 29) return 9
+}
+
+function range(start, end) {
+	return Array.from(new Array(end-start), (x,i) => i+start)
+}
+
+function slotNumToIDs(slot) {
+  // Hard coded, I know. Get at me.
+  if(slot < 3) return range(4*slot-3, 4*slot+1)
+  if(slot == 3) return [9, 10]
+  if(3 < slot && slot < 7) return range(4*slot - 5, 4*slot - 1)
+  if(slot == 7) return [23, 24]
+  if(slot == 8) return range(4*slot-7, 4*slot-3)
+  if(slot == 9) return [29, 30]
+}
+
+function setSpeakerData(speakerID) {
+  valsToFind = slotNumToIDs(idToSlotNum(speakerID))
+  neighbouringSpeakers = [];
+  for(i in valsToFind) {
+    index = findInFirstCol(speakerData, i)
+    if(index != -1)
+      neighbouringSpeakers.append(speakerData[index])
+  }
+  for(i = 0; i < valsToFind.length; i++) {
+    document.getElementById('s-abstract' + i).innerHTML = neighbouringSpeakers[i]
+  }
 }
 
 function init() {
   // Initialise student speaking times by setting their ID and onclick values
   var studentElements = document.querySelectorAll('.student-speaker');
-
   for (var i = 0; i < studentElements.length; i++) {
-    studentElements[i].id = 'student-' + i
-    studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + i + "</a>" // Delete this later, for testing only
+    index = i + 1; // Currently tossing up between i and i + 1, so defined a variable to make it easier to change.
+    studentElements[i].id = 'student-' + index
+    studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + index + "</a>" // Delete this later, for testing only
     studentElements[i].onclick = function() {
       setSpeakerData(i)
       toggle("student-speaker-block")
@@ -448,7 +498,6 @@ function init() {
 
   // Initialise IDs of timeslots
   var timeslotElements = document.querySelectorAll('.time-slots');
-
   for (var i = 0; i < timeslotElements.length; i++)
     timeslotElements[i].id = 'time-' + i
 }
