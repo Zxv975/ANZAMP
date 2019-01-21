@@ -105,13 +105,12 @@
 <div id="invited-speaker-block" class="modal">
 <!-- Modal content -->
   <div class="modal-content">
-    <span class="close" id="close">×</span>
+    <span class="close" id="close" onclick="toggle('invited-speaker-block'); return false;">×</span>
     <br>
     <table style="width:100%;">
       <tbody>
         <tr>
-          <td>Talk:time</td>
-          <td colspan="2" class="speaker-title">
+          <td class="speaker-title">
             <div id="i-speaker"><b>Speaker Name</b></div>
             <div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">Talk title</a></div>
             <div style="text-align:left">
@@ -435,6 +434,7 @@ function findInCol(arr, val, col) {
 function findInFirstCol(arr, val) { return findInCol(arr, val, 0) }
 
 function idToSlotNum(id) {
+  if(id < 0) return id;
   if(1 <= id && id <= 8) return Math.ceil(id/4)
   if(id == 9 || id == 10) return 3
   if(11 <= id && id <= 22) return Math.ceil((id+2)/4)
@@ -463,6 +463,7 @@ function rest(arr) { return arr.slice(1) }
 
 function slotNumToIDs(slot) {
   // Hard coded, I know. Get at me.
+  if(slot < 0) return [slot, [1,1]]
   if(slot < 3) return addVal(range(4*slot - 3, 4*slot + 1), [2, 2])
   if(slot == 3) return [9, 10, [2, 1]]
   if(3 < slot && slot < 7) return addVal(range(4*slot - 5, 4*slot - 1), [2, 2])
@@ -475,7 +476,6 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
   bod = document.getElementById("modal-tbody")
   bod.innerHTML = ""
   rows = [];
-  console.log(selectedSpeakerData)
   for(i = 0; i < numRows; i++) {
     rows.push(bod.insertRow())
     cells = addVal([], last(rows).insertCell(-1));
@@ -488,7 +488,7 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
       if(selectedSpeakerData[speakerIndex][3] == "") selectedSpeakerData[speakerIndex][3] = "No title"
       if(selectedSpeakerData[speakerIndex][4] == "") selectedSpeakerData[speakerIndex][4] = "No abstract"
       cells[j+1].innerHTML =
-        '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div>'
+        '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div><br>'
     }
   }
 }
@@ -521,6 +521,20 @@ function init() {
     studentElements[i].onclick = function() {
       setSpeakerData(this.id.slice(8)) // Take only the index and use that as a unique function parameter
       toggle("student-speaker-block")
+      return false;
+    }
+  }
+  // Do the same for invited speakers
+  var elems = document.querySelectorAll('.invited-speaker');
+  for (var i = 0; i < elems.length; i++) {
+    index = -i - 1;
+    elems[i].id = 'invited-' + index
+    elems[i].innerHTML = "<a href='#' class='invited-speaker-link'>iSpeaker" + index + "</a>"
+    speakerIndex = findInFirstCol(speakerData, index);
+    if(speakerIndex != CANNOT_FIND) elems[i].innerHTML = "<a href='#' class='invited-speaker-link'>"+speakerData[speakerIndex][1]+' '+speakerData[speakerIndex][2]+"</a>"
+    elems[i].onclick = function() {
+      setSpeakerData(this.id.slice(8)) // Take only the index and use that as a unique function parameter
+      toggle("invited-speaker-block")
       return false;
     }
   }
