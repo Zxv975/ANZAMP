@@ -43,6 +43,7 @@
     @import url("sites/default/files/color/garland-7d39d75b/stylef2cf.css");
     @import url("sites/default/files/color/garland-7d39d75b/stylef2cf.css");
     @import url("2019/tableformat.css");
+    @import url("themes/garland/modal_style.css");
   </style>
   <style type="text/css" media="print">
     @import url("themes/garland/printf2cf.css");
@@ -101,6 +102,76 @@
   More dummy.
 </p>
 
+<div id="invited-speaker-block" class="modal">
+<!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id="close">×</span>
+    <br>
+    <table style="width:100%;">
+      <tbody>
+        <tr>
+          <td>Talk:time</td>
+          <td colspan="2" class="speaker-title">
+            <div><b>Speaker Name</b></div>
+            <div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">Talk title</a></div>
+            <div style="text-align:left">
+              <abstract id="i-abstract" style="display:none;">Dummy abstract text.</abstract>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="student-speaker-block" class="modal">
+<!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" onclick="toggle('student-speaker-block'); return false;">×</span>
+    <br>
+    <table style="width:100%;">
+      <tbody>
+        <tr>
+          <td>Talk:time</td>
+          <td class="speaker-title multi-speaker">
+            <div><b>Speaker Name</b></div>
+            <div style="text-align:center"><a href="#" onclick="toggle(&#39;s-abstract1&#39;); return false;">Talk title</a></div>
+            <div style="text-align:left">
+              <abstract id="s-abstract1" style="display:none;">Dummy abstract text.</abstract>
+            </div>
+          </td>
+          <td class="speaker-title multi-speaker">
+            <div><b>Speaker Name</b></div>
+            <div style="text-align:center"><a href="#" onclick="toggle(&#39;s-abstract2&#39;); return false;">Talk title</a></div>
+            <div style="text-align:left">
+              <abstract id="s-abstract2" style="display:none;">Dummy abstract text.</abstract>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Talk:time</td>
+          <td class="speaker-title multi-speaker">
+            <div><b>Speaker Name</b></div>
+            <div style="text-align:center"><a href="#" onclick="toggle(&#39;s-abstract3&#39;); return false;">Talk title</a></div>
+            <div style="text-align:left">
+              <abstract id="s-abstract3" style="display:none;">Dummy abstract text.</abstract>
+            </div>
+          </td>
+          <td class="speaker-title multi-speaker">
+            <div><b>Speaker Name</b></div>
+            <div style="text-align:center"><a href="#" onclick="toggle(&#39;s-abstract4&#39;); return false;">Talk title</a></div>
+            <div style="text-align:left">
+              <abstract id="s-abstract4" style="display:none;">Dummy abstract text.</abstract>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 <!--Begin 2019 cleanup -->
 <table class="outer-table">
   <td class="day-column">
@@ -134,67 +205,67 @@
         </th>
       </tr>
       <tr>
-        <td class="student-speaker"></td>
+        <td class="time-header"></td>
         <td><div>Room1</div></td>
         <td><div>Room2</div></td>
       </tr>
       <tr>
-        <td>09:00</td>
+        <td class="time-slot">09:00</td>
         <td class="invited-speaker" colspan="2">A.C.</td>
       </tr>
       <tr>
-        <td>10:00</td>
-        <td class="student-speaker">Speaker1</td>
-        <td class="student-speaker">Speaker2</td>
+        <td class="time-slot">10:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>10:30</td>
-        <td class="student-speaker">Speaker3</td>
-        <td class="student-speaker">Speaker4</td>
+        <td class="time-slot">10:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>11:00</td>
+        <td class="time-slot">11:00</td>
         <td class="coffee" colspan="2">Coffee</td>
       </tr>
       <tr>
-        <td>11:30</td>
-        <td class="student-speaker">Speaker5</td>
-        <td class="student-speaker">Speaker6</td>
+        <td class="time-slot">11:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>12:00</td>
-        <td class="student-speaker">Speaker7</td>
-        <td class="student-speaker">Speaker8</td>
+        <td class="time-slot">12:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>12:30</td>
+        <td class="time-slot">12:30</td>
         <td class="lunch" colspan="2">Lunch</td>
       </tr>
       <tr>
-        <td>14:00</td>
+        <td class="time-slot">14:00</td>
         <td class="invited-speaker" colspan="2">J-S.C</td>
       </tr>
       <tr>
-        <td>15:00</td>
-        <td class="student-speaker">Speaker9</td>
-        <td class="student-speaker">Speaker10</td>
+        <td class="time-slot">15:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>15:30</td>
+        <td class="time-slot">15:30</td>
         <td class="coffee" colspan="2">Coffee</td>
       </tr>
       <tr>
-        <td>16:00</td>
-        <td class="student-speaker">Speaker11</td>
-        <td class="student-speaker">Speaker12</td>
+        <td class="time-slot">16:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>16:30</td>
-        <td class="student-speaker">Speaker13</td>
-        <td class="student-speaker">Speaker14</td>
+        <td class="time-slot">16:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>17:00</td>
+        <td class="time-slot">17:00</td>
         <td class="end" colspan="2">End</td>
       </tr>
     </table>
@@ -209,75 +280,75 @@
         </th>
       </tr>
       <tr>
-        <td class="student-speaker"></td>
+        <td class="time-header"> </td>
         <td><div>Room1</div></td>
         <td><div>Room2</div></td>
       </tr>
       <tr>
-        <td>09:00</td>
+        <td class="time-slot">09:00</td>
         <td class="invited-speaker" colspan="2">Y.W.</td>
       </tr>
       <tr>
-        <td>10:00</td>
-        <td class="student-speaker">Speaker15</td>
-        <td class="student-speaker">Speaker16</td>
+        <td class="time-slot">10:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>10:30</td>
-        <td class="student-speaker">Speaker17</td>
-        <td class="student-speaker">Speaker18</td>
+        <td class="time-slot">10:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>11:00</td>
+        <td class="time-slot">11:00</td>
         <td class="coffee" colspan="2">Coffee</td>
       </tr>
       <tr>
-        <td>11:30</td>
-        <td class="student-speaker">Speaker19</td>
-        <td class="student-speaker">Speaker20</td>
+        <td class="time-slot">11:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>12:00</td>
-        <td class="student-speaker">Speaker21</td>
-        <td class="student-speaker">Speaker22</td>
+        <td class="time-slot">12:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>12:30</td>
+        <td class="time-slot">12:30</td>
         <td class="lunch" colspan="2">Lunch</td>
       </tr>
       <tr>
-        <td>14:00</td>
+        <td class="time-slot">14:00</td>
         <td class="invited-speaker" colspan="2">M.V</td>
       </tr>
       <tr>
-        <td>15:00</td>
-        <td class="student-speaker">Speaker23</td>
-        <td class="student-speaker">Speaker24</td>
+        <td class="time-slot">15:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>15:30</td>
+        <td class="time-slot">15:30</td>
         <td class="coffee" colspan="2">Coffee</td>
       </tr>
       <tr>
-        <td>16:00</td>
-        <td class="student-speaker">Speaker25</td>
-        <td class="student-speaker">Speaker26</td>
+        <td class="time-slot">16:00</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>16:30</td>
-        <td class="student-speaker">Speaker27</td>
-        <td class="student-speaker">Speaker28</td>
+        <td class="time-slot">16:30</td>
+        <td class="student-speaker"> </td>
+        <td class="student-speaker"> </td>
       </tr>
       <tr>
-        <td>17:00</td>
+        <td class="time-slot">17:00</td>
         <td class="agm" colspan="2">AGM</td>
       </tr>
       <tr>
-        <td>18:30</td>
-        <td class="student-speaker" colspan="2">?</td>
+        <td class="time-slot">18:30</td>
+        <td class="potential-speaker" colspan="2">?</td>
       </tr>
       <tr>
-        <td>19:00</td>
+        <td class="time-slot">19:00</td>
         <td class="dinner" colspan="2">Dinner</td>
       </tr>
       <tr>
@@ -296,36 +367,36 @@
         </th>
       </tr>
       <tr>
-        <td class="student-speaker"></td>
+        <td class="time-header"> </td>
         <td><div>Room1</div></td>
         <td><div>Room2</div></td>
       </tr>
       <tr>
-        <td>09:00</td>
+        <td class="time-slot">09:00</td>
         <td class="invited-speaker" colspan="2">C.D.</td>
       </tr>
       <tr>
-        <td>10:00</td>
+        <td class="time-slot">10:00</td>
         <td class="invited-speaker" colspan="2">B.F.</td>
       </tr>
       <tr>
-        <td>11:00</td>
+        <td class="time-slot">11:00</td>
         <td class="coffee" colspan="2">Coffee</td>
       </tr>
       <tr>
-        <td>11:30</td>
-        <td class="student-speaker" colspan="2">Speaker29</td>
+        <td class="time-slot">11:30</td>
+        <td class="student-speaker" colspan="2"> </td>
       </tr>
       <tr>
-        <td>12:00</td>
-        <td class="student-speaker" colspan="2">Speaker30</td>
+        <td class="time-slot">12:00</td>
+        <td class="student-speaker" colspan="2"> </td>
       </tr>
       <tr>
-        <td>12:30</td>
+        <td class="time-slot">12:30</td>
         <td class="lunch" colspan="2">Lunch</td>
       </tr>
       <tr>
-        <td>14:00</td>
+        <td class="time-slot">14:00</td>
         <td class="end" colspan="2">End</td>
       </tr>
     </table>
@@ -340,6 +411,7 @@ function toggle(obj) {
   if (obj.style.display == "block") obj.style.display = "none";
   else obj.style.display = "block";
 }
+
 
 var speakerDataFileLocation = window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.csv';
 speakerData = "";
@@ -356,7 +428,32 @@ window.onload = $.get(speakerDataFileLocation, function(data) {
 	speakerData = data.slice(1).map(x => arrFirstToInt(x.split(",")))
 });
 
-// Get the <span> element that closes the modal
+function setSpeakerData(speakerID) {
+
+}
+
+function init() {
+  // Initialise student speaking times by setting their ID and onclick values
+  var studentElements = document.querySelectorAll('.student-speaker');
+
+  for (var i = 0; i < studentElements.length; i++) {
+    studentElements[i].id = 'student-' + i
+    studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + i + "</a>" // Delete this later, for testing only
+    studentElements[i].onclick = function() {
+      setSpeakerData(i)
+      toggle("student-speaker-block")
+      return false;
+    }
+  }
+
+  // Initialise IDs of timeslots
+  var timeslotElements = document.querySelectorAll('.time-slots');
+
+  for (var i = 0; i < timeslotElements.length; i++)
+    timeslotElements[i].id = 'time-' + i
+}
+
+init();
 
 
 //--><!]]>
