@@ -22,11 +22,11 @@
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta about="/meetings/current/program" property="sioc:num_replies" content="0" datatype="xsd:integer" />
+<meta about="meetings/current/program" property="sioc:num_replies" content="0" datatype="xsd:integer" />
 <link rel="shortcut icon" href="sites/default/files/anzamplogo.ico" type="image/vnd.microsoft.icon" />
 <meta content="Program" about="/meetings/current/program" property="dc:title" />
 <link rel="shortlink" href="program.html" />
-<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<!--meta name="Generator" content="Drupal 7 (http://drupal.org)" /-->
 <link rel="canonical" href="program.html" />
   <title>Program | ANZAMP Meeting 2017</title>
 <!--<script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script>-->
@@ -51,14 +51,7 @@
 <!--[if lt IE 7]>
 <link type="text/css" rel="stylesheet" href="http://www.anzamp.austms.org.au/meetings/current/themes/garland/fix-ie.css" media="all" />
 <![endif]-->
-<script type="text/javascript" src="misc/jquery1cc4.js"></script>
-<script type="text/javascript" src="misc/jquery.once7839.js"></script>
-<script type="text/javascript" src="misc/drupalf2cf.js"></script>
-<script type="text/javascript">
-<!--//--><![CDATA[//><!--
-jQuery.extend(Drupal.settings, {"basePath":"\/meetings\/current\/","pathPrefix":"","ajaxPageState":{"theme":"garland","theme_token":"TYjWyUGwKCPHzQ5X7lW_G-ywSugHlIfzHHEr6qNH6Vg","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"themes\/garland\/style.css":1,"themes\/garland\/print.css":1,"themes\/garland\/fix-ie.css":1}}});
-//--><!]]>
-</script>
+<script src="2019/jquery-3.3.1.js"></script>
 </head>
 <body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-13 node-type-page fluid-width" >
   <div id="skip-link">
@@ -102,9 +95,10 @@ jQuery.extend(Drupal.settings, {"basePath":"\/meetings\/current\/","pathPrefix":
 
 
 <p>
-  Most participants will arrive on Tuesday 31st January and a Welcome Reception is planned for that evening.  Talks will be scheduled on Wednesday 1st February to Friday 3rd February and the conference dinner will be on Thursday evening.  A bus will be arranged to take participants to Sydney airport immediately after the last talk on Friday, arriving at Sydney airport at approximately 5:30pm.  If you are taking this bus, please allow some time for unexpected delays.</p>
+  Dummy text. Please update.
+</p>
 <p>
-  A draft program is below.  Clicking on a speaker's name will pop up a mini timetable for that session with talk titles.  Clicking on the talk title will expand the abstract.
+  More dummy.
 </p>
 
 <!--Begin 2019 cleanup -->
@@ -347,8 +341,15 @@ function toggle(obj) {
   else obj.style.display = "block";
 }
 
-// Get the <span> element that closes the modal
+window.onload = $.get('/2019/speaker_data/data.csv', function(data) {
+  if (data == "ON") {
 
+  } else {
+
+  }
+});
+
+// Get the <span> element that closes the modal
 
 
 //--><!]]>
