@@ -391,13 +391,13 @@ function arrFirstToInt(arr) {
 	return [str].concat(arr.slice(1))
 }
 
-window.onload = function() {
+$(document).ready(function() {
   $.get(speakerDataFileLocation, function(data) {
     speakerData = tsvToData(data)
   });
   console.log(speakerData);
   init();
-}
+});
 
 function csvToData(csv) {
   data = csv.split("\n")
