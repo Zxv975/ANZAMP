@@ -30,7 +30,7 @@
 <link rel="canonical" href="program.html" />
   <title>Program | ANZAMP Meeting 2017</title>
 <!--<script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script>-->
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script><style type="text/css" media="all">
+  <script type="text/javascript" charset="UTF-8"></script><style type="text/css" media="all">
     @import url("modules/system/system.basef2cf.css");
     @import url("modules/system/system.menusf2cf.css");
     @import url("modules/system/system.messagesf2cf.css");
@@ -474,7 +474,7 @@ function slotNumToIDs(slot) {
 }
 
 function setSpeakerData(speakerID) {
-  console.log(speakerID)
+  console.log(typeof(speakerID))
   valsToFind = slotNumToIDs(idToSlotNum(speakerID))
   console.log(valsToFind)
   neighbouringSpeakers = [];
