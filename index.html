@@ -65,8 +65,8 @@
       <div id="header">
         <div id="logo-floater">
                               <div id="branding"><strong><a href="index.html">
-                          <img src="sites/default/files/anzamplogo.png" alt="ANZAMP Meeting 2017 " title="ANZAMP Meeting 2017 " id="logo" />
-                        <span>ANZAMP Meeting 2017</span>            </a></strong></div>
+                          <img src="sites/default/files/anzamplogo.png" alt="ANZAMP Meeting 2017 " title="ANZAMP Meeting 2019 " id="logo" />
+                        <span>ANZAMP Meeting 2019</span>            </a></strong></div>
                           </div>
 
         <h2 class="element-invisible">Main menu</h2><ul class="links inline main-menu"><li class="menu-221 first"><a href="index.html">Home</a></li>
@@ -382,6 +382,8 @@ function toggle(obj) {
 //var speakerDataFileLocation = window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.tsv';
 var speakerDataFileLocation = "/ANZAMP/2019/speaker_data/data.tsv"
 speakerData = "";
+const CANNOT_FIND = -Number.MIN_SAFE_INTEGER;
+
 function arrFirstToInt(arr) {
 	str = arr[0];
 	if(str != "") str = parseInt(str);
@@ -393,6 +395,7 @@ window.onload = function() {
   $.get(speakerDataFileLocation, function(data) {
     speakerData = tsvToData(data)
   });
+  console.log(speakerData);
   init();
 }
 
@@ -418,12 +421,12 @@ function firstColumnSort(a, b) {
 }
 
 function findInCol(arr, val, col) {
-  if(arr == 'undefined') return -1
-  if(col >= arr.length || col < 0) return -1 // Outside of bounds
+  if(arr == 'undefined') return CANNOT_FIND
+  if(col >= arr.length || col < 0) return CANNOT_FIND // Outside of bounds
   for(var i = 0; i < arr.length; i++)
     if(arr[i][col] == val)
         return i;
-  return -1; // Value not found.
+  return CANNOT_FIND; // Value not found.
 }
 
 function findInFirstCol(arr, val) { return findInCol(arr, val, 0) }
@@ -494,7 +497,7 @@ function setSpeakerData(speakerID) {
   neighbouringSpeakers = [];
   for(i in valsToFind) {
     index = findInFirstCol(speakerData, valsToFind[i])
-    if(index == -1) neighbouringSpeakers.push(Array(5).fill(""))
+    if(index == CANNOT_FIND) neighbouringSpeakers.push(Array(5).fill(""))
     else neighbouringSpeakers.push(speakerData[index])
   }
 
@@ -510,7 +513,7 @@ function init() {
     studentElements[i].id = 'student-' + index
     studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + index + "</a>"
     speakerIndex = findInFirstCol(speakerData, index);
-    if(speakerIndex != -1) studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>"+speakerData[speakerIndex][2]+"</a>"
+    if(speakerIndex != CANNOT_FIND) studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>"+speakerData[speakerIndex][2]+"</a>"
     studentElements[i].onclick = function() {
       setSpeakerData(this.id.slice(8)) // Take only the index and use that as a unique function parameter
       toggle("student-speaker-block")
