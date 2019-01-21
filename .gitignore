@@ -2,3 +2,5 @@
 *.gsheet
 /testing
 *.xls
+*.xlsx
+*.DS_STORE

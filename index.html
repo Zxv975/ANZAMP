@@ -480,8 +480,8 @@ function setSpeakerData(speakerID) {
   neighbouringSpeakers = [];
   for(i in valsToFind) {
     index = findInFirstCol(speakerData, i)
-    if(index != -1)
-      neighbouringSpeakers.push(speakerData[index])
+    if(index == -1) neighbouringSpeakers.push([])
+    else neighbouringSpeakers.push(speakerData[index])
   }
   for(i = 0; i < valsToFind.length; i++) {
     document.getElementById('s-abstract' + i).innerHTML = neighbouringSpeakers[i]
