@@ -399,6 +399,10 @@ $(document).ready(function() {
   init();
 });
 
+setTimeout(function(){
+ init()
+}, 1000);
+
 function csvToData(csv) {
   data = csv.split("\n")
   csvHeaders = data[0].split(",")
