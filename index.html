@@ -341,7 +341,9 @@ function toggle(obj) {
   else obj.style.display = "block";
 }
 
-window.onload = $.get(window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.csv', function(data) {
+var speakerDataFileLocation = window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.csv';
+
+window.onload = $.get(speakerDataFileLocation, function(data) {
 
 });
 
