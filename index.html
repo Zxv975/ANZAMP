@@ -28,7 +28,7 @@
 <link rel="shortlink" href="program.html" />
 <!--meta name="Generator" content="Drupal 7 (http://drupal.org)" /-->
 <link rel="canonical" href="program.html" />
-  <title>Program | ANZAMP Meeting 2017</title>
+  <title>Program | ANZAMP Meeting 2019</title>
 <!--<script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script>-->
   <script type="text/javascript" charset="UTF-8"></script><style type="text/css" media="all">
     @import url("modules/system/system.basef2cf.css");
@@ -472,16 +472,16 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
   for(i = 0; i < numRows; i++) {
     rows.push(bod.insertRow())
     cells = addVal([], last(rows).insertCell(-1));
-    cells[0].innerHTML = "No time found"
     for(j = 0; j < numCols; j++) {
       cells.push(last(rows).insertCell(-1))
       cells[j+1].class = "speaker-title"
       cells[j+1].style.width = Math.round(100 / numCols) + "%"
       speakerIndex = i * numCols + j;
+      if(selectedSpeakerData[speakerIndex][1] == "") selectedSpeakerData[speakerIndex][1] = "Unnamed"
       if(selectedSpeakerData[speakerIndex][3] == "") selectedSpeakerData[speakerIndex][3] = "No title"
       if(selectedSpeakerData[speakerIndex][4] == "") selectedSpeakerData[speakerIndex][4] = "No abstract"
       cells[j+1].innerHTML =
-        '<div><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div>'
+        '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div>'
     }
   }
 }
@@ -494,18 +494,15 @@ function setSpeakerData(speakerID) {
   neighbouringSpeakers = [];
   for(i in valsToFind) {
     index = findInFirstCol(speakerData, valsToFind[i])
-    if(index == -1) neighbouringSpeakers.push(["", "Unspecified speaker", "", "No title", "No abstract"])
+    if(index == -1) neighbouringSpeakers.push(Array(5).fill(""))
     else neighbouringSpeakers.push(speakerData[index])
   }
 
   buildModal(dims[0], dims[1], neighbouringSpeakers)
-  /*for(i = 0; i < valsToFind.length; i++) {
-    document.getElementById()
-    document.getElementById('s-abstract' + i).innerHTML = neighbouringSpeakers[i][4]
-  } */
 }
 
 function init() {
+  console.log("Initialising")
   // Initialise student speaking times by setting their ID and onclick values
   var studentElements = document.querySelectorAll('.student-speaker');
   for (var i = 0; i < studentElements.length; i++) {
@@ -533,24 +530,31 @@ times = {
   2: "10:00",
   3: "10:30",
   4: "10:30",
-  5: "",
-  6: "",
-  7: "",
-  8: "",
-  9: "",
-  10: "",
-  11: "",
-  12: "",
-  13: "",
-  14: "",
-  15: "",
-  16: "",
-  17: "",
-  18: "",
-  19: "",
-  20: "",
-  21: "",
-  22: "",
+  5: "11:30",
+  6: "11:30",
+  7: "12:00",
+  8: "12:00",
+  9: "15:00",
+  10: "15:00",
+  11: "16:00",
+  12: "16:00",
+  13: "16:30",
+  14: "16:30",
+  15: "10:00",
+  16: "10:00",
+  17: "10:30",
+  18: "10:30",
+  19: "11:30",
+  20: "11:30",
+  21: "12:00",
+  22: "12:00",
+  23: "15:00",
+  24: "15:00",
+  25: "16:00",
+  26: "16:00",
+  27: "16:30",
+  29: "11:30",
+  30: "12:00",
 }
 
 //--><!]]>
