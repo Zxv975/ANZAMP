@@ -489,7 +489,7 @@ function buildIModal(selectedSpeakerData) {
   bod.innerHTML = "";
   row = bod.insertRow(-1)
   border = row.insertCell(-1)
-  console.log(selectedSpeakerData[0][4])
+  console.log(selectedSpeakerData)
   if(selectedSpeakerData[0][1] == "") selectedSpeakerData[0][1] = "Unnamed"
   if(selectedSpeakerData[0][3] == "") selectedSpeakerData[0][3] = "No title"
   if(selectedSpeakerData[0][4].trim() == "") selectedSpeakerData[0][4] = "No abstract"
