@@ -400,7 +400,7 @@ $(document).ready(function() {
 
 setTimeout(function(){
  init()
-}, 1000);
+}, 3000);
 
 function csvToData(csv) {
   data = csv.split("\n")
@@ -475,6 +475,7 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
   bod = document.getElementById("modal-tbody")
   bod.innerHTML = ""
   rows = [];
+  console.log(selectedSpeakerData)
   for(i = 0; i < numRows; i++) {
     rows.push(bod.insertRow())
     cells = addVal([], last(rows).insertCell(-1));
