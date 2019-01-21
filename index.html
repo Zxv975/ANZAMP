@@ -30,7 +30,7 @@
 <link rel="canonical" href="program.html" />
   <title>Program | ANZAMP Meeting 2017</title>
 <!--<script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script>-->
-  <style type="text/css" media="all">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/73A8F0AC-180B-434B-944F-7E73AB1D3EB0/main.js" charset="UTF-8"></script><style type="text/css" media="all">
     @import url("modules/system/system.basef2cf.css");
     @import url("modules/system/system.menusf2cf.css");
     @import url("modules/system/system.messagesf2cf.css");
@@ -423,11 +423,15 @@ function arrFirstToInt(arr) {
 }
 
 window.onload = $.get(speakerDataFileLocation, function(data) {
-	data = data.split("\n")
-	dataHeaders = data[0].split(",")
-	speakerData = data.slice(1).map(x => arrFirstToInt(x.split(",")))
-  speakerData = speakerData.sort(firstColumnSort)
+  speakerData = csvToData(data)
 });
+
+function csvToData(csv) {
+  data = csv.split("\n")
+  csvHeaders = data[0].split(",")
+  csvData = data.slice(1).map(x => arrFirstToInt(x.split(",")))
+  return csvData.sort(firstColumnSort)
+}
 
 function firstColumnSort(a, b) {
   if(a[0] === b[0]) return 0
@@ -461,11 +465,11 @@ function range(start, end) {
 
 function slotNumToIDs(slot) {
   // Hard coded, I know. Get at me.
-  if(slot < 3) return range(4*slot-3, 4*slot+1)
+  if(slot < 3) return range(4*slot - 3, 4*slot + 1)
   if(slot == 3) return [9, 10]
   if(3 < slot && slot < 7) return range(4*slot - 5, 4*slot - 1)
   if(slot == 7) return [23, 24]
-  if(slot == 8) return range(4*slot-7, 4*slot-3)
+  if(slot == 8) return range(4*slot - 7, 4*slot - 3)
   if(slot == 9) return [29, 30]
 }
 
@@ -477,7 +481,7 @@ function setSpeakerData(speakerID) {
   for(i in valsToFind) {
     index = findInFirstCol(speakerData, i)
     if(index != -1)
-      neighbouringSpeakers.append(speakerData[index])
+      neighbouringSpeakers.push(speakerData[index])
   }
   for(i = 0; i < valsToFind.length; i++) {
     document.getElementById('s-abstract' + i).innerHTML = neighbouringSpeakers[i]
@@ -490,9 +494,9 @@ function init() {
   for (var i = 0; i < studentElements.length; i++) {
     index = i + 1; // Currently tossing up between i and i + 1, so defined a variable to make it easier to change.
     studentElements[i].id = 'student-' + index
-    studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + index + "</a>" // Delete this later, for testing only
+    studentElements[i].innerHTML = "<a href='#' class='student-speaker-link'>Speaker " + index + "</a>"
     studentElements[i].onclick = function() {
-      setSpeakerData(i)
+      setSpeakerData(this.id.slice(8))
       toggle("student-speaker-block")
       return false;
     }
