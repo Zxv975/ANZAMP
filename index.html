@@ -489,10 +489,10 @@ function buildIModal(selectedSpeakerData) {
   bod.innerHTML = "";
   row = bod.insertRow(-1)
   border = row.insertCell(-1)
-
+  console.log(selectedSpeakerData[0][4])
   if(selectedSpeakerData[0][1] == "") selectedSpeakerData[0][1] = "Unnamed"
   if(selectedSpeakerData[0][3] == "") selectedSpeakerData[0][3] = "No title"
-  if(selectedSpeakerData[0][4] == "" || selectedSpeakerData[0][4] == "\n") selectedSpeakerData[0][4] = "No abstract"
+  if(selectedSpeakerData[0][4].trim() == "") selectedSpeakerData[0][4] = "No abstract"
 
   border.className = "speaker-title";
   border.innerHTML = '<div id="i-speaker"><b>'+selectedSpeakerData[0][1]+' '+selectedSpeakerData[0][2]+'</b></div><div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">'+selectedSpeakerData[0][3]+'</a></div><div style="text-align:left"><abstract id="i-abstract" style="display:none;">'+selectedSpeakerData[0][4]+'</abstract></div>'
