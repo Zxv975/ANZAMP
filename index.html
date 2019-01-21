@@ -108,16 +108,7 @@
     <span class="close" id="close" onclick="toggle('invited-speaker-block'); return false;">×</span>
     <br>
     <table style="width:100%;">
-      <tbody>
-        <tr>
-          <td class="speaker-title">
-            <div id="i-speaker"><b>Speaker Name</b></div>
-            <div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">Talk title</a></div>
-            <div style="text-align:left">
-              <abstract id="i-abstract" style="display:none;">Dummy abstract text.</abstract>
-            </div>
-          </td>
-        </tr>
+      <tbody id="i-modal-tbody">
       </tbody>
     </table>
   </div>
@@ -129,7 +120,7 @@
     <span class="close" onclick="toggle('student-speaker-block'); return false;">×</span>
     <br>
     <table style="width:100%;">
-      <tbody id="modal-tbody">
+      <tbody id="s-modal-tbody">
       </tbody>
     </table>
   </div>
@@ -472,8 +463,8 @@ function slotNumToIDs(slot) {
   if(slot == 9) return [29, 30, [2, 1]]
 }
 
-function buildModal(numRows, numCols, selectedSpeakerData) {
-  bod = document.getElementById("modal-tbody")
+function buildSModal(numRows, numCols, selectedSpeakerData) {
+  bod = document.getElementById("s-modal-tbody")
   bod.innerHTML = ""
   rows = [];
   for(i = 0; i < numRows; i++) {
@@ -493,6 +484,20 @@ function buildModal(numRows, numCols, selectedSpeakerData) {
   }
 }
 
+function buildIModal(selectedSpeakerData) {
+  bod = document.getElementById("i-modal-tbody")
+  bod.innerHTML = "";
+  row = bod.insertRow(-1)
+  border = row.insertCell(-1)
+
+  if(selectedSpeakerData[0][1] == "") selectedSpeakerData[0][1] = "Unnamed"
+  if(selectedSpeakerData[0][3] == "") selectedSpeakerData[0][3] = "No title"
+  if(selectedSpeakerData[0][4] == "") selectedSpeakerData[0][4] = "No abstract"
+
+  border.className = "speaker-title";
+  border.innerHTML = '<div id="i-speaker"><b>'+selectedSpeakerData[0][1]+' '+selectedSpeakerData[0][2]+'</b></div><div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">'+selectedSpeakerData[0][3]+'</a></div><div style="text-align:left"><abstract id="i-abstract" style="display:none;">'+selectedSpeakerData[0][4]+'</abstract></div>'
+}
+
 function setSpeakerData(speakerID) {
   speakerID = parseInt(speakerID)
   valsToFind = slotNumToIDs(idToSlotNum(speakerID))
@@ -504,8 +509,8 @@ function setSpeakerData(speakerID) {
     if(index == CANNOT_FIND) neighbouringSpeakers.push(Array(5).fill(""))
     else neighbouringSpeakers.push(speakerData[index])
   }
-
-  buildModal(dims[0], dims[1], neighbouringSpeakers)
+  if(speakerID > 0) buildSModal(dims[0], dims[1], neighbouringSpeakers)
+  else buildIModal(neighbouringSpeakers)
 }
 
 function init() {
