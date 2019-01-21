@@ -342,9 +342,18 @@ function toggle(obj) {
 }
 
 var speakerDataFileLocation = window.location.pathname.slice(0, -11) + '/2019/speaker_data/data.csv';
+var speakerData = "";
+function arrFirstToInt(arr) {
+	str = arr[0];
+	if(str != "") str = parseInt(str);
+	else str = ""
+	return [str].concat(arr.slice(1))
+}
 
 window.onload = $.get(speakerDataFileLocation, function(data) {
-
+	data = data.split("\n")
+	dataHeaders = data[0].split(",")
+	speakerDataList = data.slice(1).map(x => arrFirstToInt(x.split(",")))
 });
 
 // Get the <span> element that closes the modal
