@@ -477,7 +477,7 @@ function buildSModal(numRows, numCols, selectedSpeakerData) {
       speakerIndex = i * numCols + j;
       if(selectedSpeakerData[speakerIndex][1] == "") selectedSpeakerData[speakerIndex][1] = "Unnamed"
       if(selectedSpeakerData[speakerIndex][3] == "") selectedSpeakerData[speakerIndex][3] = "No title"
-      if(selectedSpeakerData[speakerIndex][4] == "" || selectedSpeakerData[speakerIndex][4] == "\n") selectedSpeakerData[speakerIndex][4] = "No abstract"
+      if(selectedSpeakerData[speakerIndex][4].trim() == "") selectedSpeakerData[speakerIndex][4] = "No abstract"
       cells[j+1].innerHTML =
         '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+selectedSpeakerData[speakerIndex][4]+'</abstract></div><br>'
     }
