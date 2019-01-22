@@ -479,7 +479,7 @@ function buildSModal(numRows, numCols, selectedSpeakerData) {
       if(selectedSpeakerData[speakerIndex][3] == "") selectedSpeakerData[speakerIndex][3] = "No title"
       if(selectedSpeakerData[speakerIndex][4].trim() == "") selectedSpeakerData[speakerIndex][4] = "No abstract" // Extra bit of code to handle this one because Eol funny business
       cells[j+1].innerHTML =
-        '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none;">'+replaceAll(selectedSpeakerData[speakerIndex][4], '"/n"', '\n')+'</abstract></div><br>'
+        '<div style="text-align: center"><b>'+selectedSpeakerData[speakerIndex][1]+' '+selectedSpeakerData[speakerIndex][2]+'</b></div><div style="text-align: center"><a href="#" onclick="toggle(&#39;s-abstract'+speakerIndex+'&#39;); return false;">'+selectedSpeakerData[speakerIndex][3]+'</a></center></div><div style="text-align:left"><abstract id="s-abstract'+speakerIndex+'" style="display:none; white-space: pre-line">'+replaceAll(selectedSpeakerData[speakerIndex][4], '/n', '\n')+'</abstract></div><br>'
     }
   }
 }
@@ -492,13 +492,13 @@ function buildIModal(selectedSpeakerData) {
   bod.innerHTML = "";
   row = bod.insertRow(-1)
   border = row.insertCell(-1)
-  console.log(selectedSpeakerData)
   if(selectedSpeakerData[0][1] == "") selectedSpeakerData[0][1] = "Unnamed"
   if(selectedSpeakerData[0][3] == "") selectedSpeakerData[0][3] = "No title"
   if(selectedSpeakerData[0][4].trim() == "") selectedSpeakerData[0][4] = "No abstract" // Extra bit of code to handle this one because Eol funny business
-
+  console.log(selectedSpeakerData[0][4])
+  console.log(replaceAll(selectedSpeakerData[0][4], '/n', '\n'))
   border.className = "speaker-title";
-  border.innerHTML = '<div id="i-speaker"><b>'+selectedSpeakerData[0][1]+' '+selectedSpeakerData[0][2]+'</b></div><div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">'+selectedSpeakerData[0][3]+'</a></div><div style="text-align:left"><abstract id="i-abstract" style="display:none;">'+replaceAll(selectedSpeakerData[0][4], '"/n"', '\n')+'</abstract></div>'
+  border.innerHTML = '<div id="i-speaker"><b>'+selectedSpeakerData[0][1]+' '+selectedSpeakerData[0][2]+'</b></div><div style="text-align:center"><a href="#" onclick="toggle(&#39;i-abstract&#39;); return false;">'+selectedSpeakerData[0][3]+'</a></div><div style="text-align:left"><abstract id="i-abstract" style="display:none; white-space: pre-line">'+replaceAll(selectedSpeakerData[0][4], '/n', '\n')+'</abstract></div>'
 }
 
 function setSpeakerData(speakerID) {
