@@ -53,7 +53,7 @@
 }
 
 .potential-speaker {
-  height: var(--small-row-size);
+  height: var(--medium-row-size);
 }
 
 .time-header {
