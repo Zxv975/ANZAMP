@@ -294,15 +294,10 @@
       </tr>
       <tr>
         <td class="time-slot">16:30</td>
-        <td class="student-speaker"> </td>
-        <td class="student-speaker"> </td>
-      </tr>
-      <tr>
-        <td class="time-slot">17:00</td>
         <td class="agm" colspan="2">AGM (Sapphire Room)</td>
       </tr>
       <tr>
-        <td class="time-slot">18:30</td>
+        <td class="time-slot">18:00</td>
         <td class="potential-speaker" colspan="2">Break</td>
       </tr>
       <tr>
@@ -423,8 +418,21 @@ function findInCol(arr, val, col) {
         return i;
   return CANNOT_FIND; // Value not found.
 }
-
 function findInFirstCol(arr, val) { return findInCol(arr, val, 0) }
+function range(start, end) {
+	return Array.from(new Array(end-start), (x,i) => i+start)
+}
+function addVal(arr, val) {
+  // It makes me unbelievably mad that Array.push returns the length of the array
+  arr.push(val)
+  return arr
+}
+// I like these functions from proper functional languages
+
+function first(arr) { return arr.slice(0, 1)[0] } // Return first element in an array
+function last(arr) { return arr.slice(-1)[0] } // Return very last element in an array
+function most(arr) { return arr.slice(0, -1)}
+function rest(arr) { return arr.slice(1) }
 
 function idToSlotNum(id) {
   if(id < 0) return id;
@@ -432,27 +440,9 @@ function idToSlotNum(id) {
   if(id == 9 || id == 10) return 3
   if(11 <= id && id <= 22) return Math.ceil((id+2)/4)
   if(id == 23 || id == 24) return 7
-  if(25 <= id && id <= 28) return Math.ceil((id+4)/4)
-  if(id >= 29) return 9
+  if(id == 25 || id == 26) return 8
+  if(id >= 27) return 9
 }
-
-function range(start, end) {
-	return Array.from(new Array(end-start), (x,i) => i+start)
-}
-
-function addVal(arr, val) {
-  // It makes me unbelievably mad that Array.push returns the length of the array
-  arr.push(val)
-  return arr
-}
-
-
-// I like these functions from proper functional languages
-
-function first(arr) { return arr.slice(0, 1)[0] } // Return first element in an array
-function last(arr) { return arr.slice(-1)[0] } // Return very last element in an array
-function most(arr) { return arr.slice(0, -1)}
-function rest(arr) { return arr.slice(1) }
 
 function slotNumToIDs(slot) {
   // Hard coded, I know. Get at me.
@@ -461,8 +451,8 @@ function slotNumToIDs(slot) {
   if(slot == 3) return [9, 10, [2, 1]]
   if(3 < slot && slot < 7) return addVal(range(4*slot - 5, 4*slot - 1), [2, 2])
   if(slot == 7) return [23, 24, [1, 2]]
-  if(slot == 8) return addVal(range(4*slot - 7, 4*slot - 3), [2,2])
-  if(slot == 9) return [29, 30, [2, 1]]
+  if(slot == 8) return [25, 26, [2,2]]
+  if(slot == 9) return [27, 28, [2, 1]]
 }
 
 function buildSModal(numRows, numCols, selectedSpeakerData) {
