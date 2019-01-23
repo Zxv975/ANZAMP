@@ -111,7 +111,7 @@ jsMath.Easy = {
   //  List of fonts to load automatically.  E.g.
   //      ["cmmib10"]
   //
-  loadFonts: [],
+  loadFonts: ["cmbx10","cmex10","cmmi10","cmr10","cmsy10","cmti10"],
   
   //
   //  List of macros to define.  These are of the form
