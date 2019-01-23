@@ -32,7 +32,7 @@
 
 .blank
 {
-  height:calc(var(--small-row-size) * 20 + var(--cellspacing) * 13);
+  height:calc(var(--small-row-size) * 22 + var(--cellspacing) * 10);
 }
 
 .table-header
